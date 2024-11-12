@@ -10,7 +10,7 @@ export default function Home() {
     setPassengerClass(event.target.value);
   };
 
-  const handleAgeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleAgeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAge(event.target.value);
   };
 
@@ -28,15 +28,13 @@ export default function Home() {
     };
 
     try {
-      const response = await fetch('http://4.248.15.105/predict', {
+      const response = await fetch('http://127.0.0.1:5000/predict', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
         },
         body: JSON.stringify(data),
         mode: 'cors',
-        credentials: 'same-origin',
       });
 
       if (response.ok) {
