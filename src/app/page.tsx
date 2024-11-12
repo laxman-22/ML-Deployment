@@ -5,6 +5,7 @@ export default function Home() {
   const [passengerClass, setPassengerClass] = useState('1');
   const [age, setAge] = useState('20');
   const [gender, setGender] = useState('male');
+  const [data, setData] = useState("");
 
   const handlePassengerClassChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setPassengerClass(event.target.value);
@@ -28,7 +29,7 @@ export default function Home() {
     };
 
     try {
-      const response = await fetch('https://4.248.15.105/predict', {
+      const response = await fetch('https://ml-flask-server.onrender.com/predict', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -40,6 +41,7 @@ export default function Home() {
       if (response.ok) {
         const responseData = await response.json();
         console.log(responseData)
+        setData(responseData)
       } else {
         alert("Failed to Submit Data")
       }
@@ -96,6 +98,9 @@ export default function Home() {
               >
                 Submit
               </button>
+            </div>
+            <div>
+              <p>Result: {data}</p>
             </div>
           </div>
         </form>
