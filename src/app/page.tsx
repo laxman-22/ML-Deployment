@@ -5,7 +5,7 @@ export default function Home() {
   const [passengerClass, setPassengerClass] = useState('1');
   const [age, setAge] = useState('20');
   const [gender, setGender] = useState('male');
-  const [data, setData] = useState("");
+  const [result, setResult] = useState("");
 
   const handlePassengerClassChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setPassengerClass(event.target.value);
@@ -41,7 +41,7 @@ export default function Home() {
       if (response.ok) {
         const responseData = await response.json();
         console.log(responseData)
-        setData(responseData)
+        setResult(JSON.stringify(responseData))
       } else {
         alert("Failed to Submit Data")
       }
@@ -100,7 +100,7 @@ export default function Home() {
               </button>
             </div>
             <div>
-              <p>Result: {data}</p>
+              <p>Result: {result}</p>
             </div>
           </div>
         </form>
