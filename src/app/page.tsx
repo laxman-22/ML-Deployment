@@ -6,6 +6,8 @@ export default function Home() {
   const [age, setAge] = useState('20');
   const [gender, setGender] = useState('male');
   const [result, setResult] = useState("");
+  const [prob, setProb] = useState("");
+
 
   const handlePassengerClassChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setPassengerClass(event.target.value);
@@ -41,7 +43,9 @@ export default function Home() {
       if (response.ok) {
         const responseData = await response.json();
         console.log(responseData)
-        setResult(JSON.stringify(responseData))
+        setResult(responseData.prediction)
+        setProb(responseData.survival_probability)
+
       } else {
         alert("Failed to Submit Data")
       }
@@ -100,7 +104,9 @@ export default function Home() {
               </button>
             </div>
             <div>
+              <p>Probability of Survival: {prob}</p>
               <p>Result: {result}</p>
+
             </div>
           </div>
         </form>
