@@ -28,7 +28,7 @@ export default function Home() {
     };
 
     try {
-      const response = await fetch('http://4.248.15.105/predict', {
+      const response = await fetch('https://4.248.15.105/predict', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
